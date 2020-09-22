@@ -53,3 +53,23 @@ int main(int ArgsCount, const char ** Args) {
 ```
 cc main.c -nostdinc -nostdlib -fno-stack-protector -fno-asynchronous-unwind-tables killgnu/libkillgnu.a
 ```
+
+```
+$ valgrind ./a.out 
+==3224== Memcheck, a memory error detector
+==3224== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==3224== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==3224== Command: ./a.out
+==3224== 
+Hello, World!
+Arg: ./a.out
+==3224== 
+==3224== HEAP SUMMARY:
+==3224==     in use at exit: 0 bytes in 0 blocks
+==3224==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==3224== 
+==3224== All heap blocks were freed -- no leaks are possible
+==3224== 
+==3224== For counts of detected and suppressed errors, rerun with: -v
+==3224== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
