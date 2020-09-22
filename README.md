@@ -19,8 +19,8 @@ int main(int ArgsCount, const char ** Args) {
   }
   {
     int fd = killGnuOpen("/tmp/killgnu", 02 | 0100, 0400 | 0200);
-    if (fd == -1) {
-      killGnuPrint("killGnuOpen write: fd == -1\n");
+    if (fd < 0) {
+      killGnuPrint("killGnuOpen write: fd < 0\n");
     }
     killGnuPwrite(fd, memory, 6 * sizeof(unsigned), 0);
     killGnuClose(fd);
@@ -34,8 +34,8 @@ int main(int ArgsCount, const char ** Args) {
   }
   {
     int fd = killGnuOpen("/tmp/killgnu", 02, 0400 | 0200);
-    if (fd == -1) {
-      killGnuPrint("killGnuOpen read: fd == -1\n");
+    if (fd < 0) {
+      killGnuPrint("killGnuOpen read: fd < 0\n");
     }
     int lastNumber = 0;
     KillGnuFileStatus fileStatus = {};
