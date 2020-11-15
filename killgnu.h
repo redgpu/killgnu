@@ -44,4 +44,4 @@ long   killGnuPread        (int fd, void * outBuffer, unsigned long fdBytesCount
 long   killGnuPwrite       (int fd, const void * buffer, unsigned long bufferBytesCount, long fdBytesFirst);
 int    killGnuFstat        (int fd, KillGnuFileStatus * outFileStatus);
 int    killGnuClockGetTime (int clockId, KillGnuTimeSpec * outTimeSpec);
-int __ killGnuSecondsToUtc (long secondsSinceUnixEpoch, KillGnuUtc * outUtc);
+int    killGnuSecondsToUtc (long secondsSinceUnixEpoch, KillGnuUtc * outUtc);
