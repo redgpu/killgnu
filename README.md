@@ -46,6 +46,69 @@ int main(int ArgsCount, const char ** Args) {
       killGnuPrint("lastNumber != 42\n");
     }
   }
+  {
+    int           minSInt32 = 0b10000000000000000000000000000000;
+    unsigned      maxUInt32 = 0b11111111111111111111111111111111;
+    long          minSInt64 = 0b1000000000000000000000000000000000000000000000000000000000000000;
+    unsigned long maxUInt64 = 0b1111111111111111111111111111111111111111111111111111111111111111;
+    char minSInt32Chars[21];
+    char maxUInt32Chars[21];
+    char minSInt64Chars[21];
+    char maxUInt64Chars[21];
+    int  minSInt32CharsCount = killGnuToCharsSInt32d(minSInt32, minSInt32Chars);
+    int  maxUInt32CharsCount = killGnuToCharsUInt32u(maxUInt32, maxUInt32Chars);
+    int  minSInt64CharsCount = killGnuToCharsSInt64lld(minSInt64, minSInt64Chars);
+    int  maxUInt64CharsCount = killGnuToCharsUInt64llu(maxUInt64, maxUInt64Chars);
+    char minSInt32CharsCountChars[21];
+    char maxUInt32CharsCountChars[21];
+    char minSInt64CharsCountChars[21];
+    char maxUInt64CharsCountChars[21];
+    killGnuToCharsSInt32d(minSInt32CharsCount, minSInt32CharsCountChars);
+    killGnuToCharsSInt32d(maxUInt32CharsCount, maxUInt32CharsCountChars);
+    killGnuToCharsSInt32d(minSInt64CharsCount, minSInt64CharsCountChars);
+    killGnuToCharsSInt32d(maxUInt64CharsCount, maxUInt64CharsCountChars);
+    {
+      killGnuPrint("minSInt32CharsCount: ");
+      killGnuPrint(minSInt32CharsCountChars);
+      killGnuPrint(", minSInt32 (%d): ");
+      killGnuPrint(minSInt32Chars);
+      killGnuPrint("\n");
+    }
+    {
+      killGnuPrint("maxUInt32CharsCount: ");
+      killGnuPrint(maxUInt32CharsCountChars);
+      killGnuPrint(", maxUInt32 (%u): ");
+      killGnuPrint(maxUInt32Chars);
+      killGnuPrint("\n");
+    }
+    {
+      killGnuPrint("minSInt64CharsCount: ");
+      killGnuPrint(minSInt64CharsCountChars);
+      killGnuPrint(", minSInt64 (%lld): ");
+      killGnuPrint(minSInt64Chars);
+      killGnuPrint("\n");
+    }
+    {
+      killGnuPrint("maxUInt64CharsCount: ");
+      killGnuPrint(maxUInt64CharsCountChars);
+      killGnuPrint(", maxUInt64 (%llu): ");
+      killGnuPrint(maxUInt64Chars);
+      killGnuPrint("\n");
+    }
+  }
+  {
+    float sfloat32 = 1.f / 3.f;
+    char  sfloat32Chars[512];
+    int   sfloat32CharsCount = killGnuToCharsSFloat32Dot9g(sfloat32, 0);
+    char  sfloat32CharsCountChars[21];
+    killGnuToCharsSFloat32Dot9g(sfloat32, sfloat32Chars);
+    killGnuToCharsSInt32d(sfloat32CharsCount, sfloat32CharsCountChars);
+    killGnuPrint("sfloat32CharsCount: ");
+    killGnuPrint(sfloat32CharsCountChars);
+    killGnuPrint(", sfloat32 (%.9g): ");
+    killGnuPrint(sfloat32Chars);
+    killGnuPrint("\n");
+  }
   killGnuFree(memory);
 }
 ```
@@ -56,20 +119,25 @@ cc main.c -nostdinc -nostdlib -fno-stack-protector -fno-asynchronous-unwind-tabl
 
 ```
 $ valgrind ./a.out 
-==3224== Memcheck, a memory error detector
-==3224== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==3224== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==3224== Command: ./a.out
-==3224== 
+==14865== Memcheck, a memory error detector
+==14865== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==14865== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==14865== Command: ./a.out
+==14865== 
 Hello, World!
 Arg: ./a.out
-==3224== 
-==3224== HEAP SUMMARY:
-==3224==     in use at exit: 0 bytes in 0 blocks
-==3224==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==3224== 
-==3224== All heap blocks were freed -- no leaks are possible
-==3224== 
-==3224== For counts of detected and suppressed errors, rerun with: -v
-==3224== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+minSInt32CharsCount: 12, minSInt32 (%d): -2147483648
+maxUInt32CharsCount: 11, maxUInt32 (%u): 4294967295
+minSInt64CharsCount: 21, minSInt64 (%lld): -9223372036854775808
+maxUInt64CharsCount: 21, maxUInt64 (%llu): 18446744073709551615
+sfloat32CharsCount: 12, sfloat32 (%.9g): 0.333333343
+==14865== 
+==14865== HEAP SUMMARY:
+==14865==     in use at exit: 0 bytes in 0 blocks
+==14865==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==14865== 
+==14865== All heap blocks were freed -- no leaks are possible
+==14865== 
+==14865== For counts of detected and suppressed errors, rerun with: -v
+==14865== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
