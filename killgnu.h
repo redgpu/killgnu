@@ -51,5 +51,5 @@ int    killGnuToCharsSInt64lld                     (long value, char * outChars)
 int    killGnuToCharsUInt64llu                     (unsigned long value, char * outChars);
 int    killGnuToCharsSFloat32Dot9g                 (float value, char * outChars);
 int    killGnuToCharsSFloat64Dot17g                (double value, char * outChars);
-void   killGnuToCharsWithoutNullTerminatorBinary32 (const void * addressTo32BitValue, char * outCharsWithoutNullTerminator);
-void   killGnuToCharsWithoutNullTerminatorBinary64 (const void * addressTo64BitValue, char * outCharsWithoutNullTerminator);
+void   killGnuToCharsWithoutNullTerminatorBinary32 (unsigned value32Bit, char * outCharsWithoutNullTerminator);
+void   killGnuToCharsWithoutNullTerminatorBinary64 (unsigned long value64Bit, char * outCharsWithoutNullTerminator);
