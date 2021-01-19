@@ -56,3 +56,4 @@ void   killGnuToCharsWithoutNullTerminatorHex8     (unsigned value32Bit, char * 
 void   killGnuToCharsWithoutNullTerminatorBinary64 (unsigned long value64Bit, char * outCharsWithoutNullTerminator);
 void   killGnuToCharsWithoutNullTerminatorHex16    (unsigned long value64Bit, char * outCharsWithoutNullTerminator);
 int    killGnuGetPid                               (void);
+int    killGnuGetTid                               (void);

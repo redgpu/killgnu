@@ -110,16 +110,19 @@ int main(int ArgsCount, const char ** Args) {
     killGnuPrint("\n");
   }
   {
+    int  tid = killGnuGetTid();
+    char tidChars[21];
+    killGnuToCharsSInt32d(tid, tidChars);
+    killGnuPrint("TID: ");
+    killGnuPrint(tidChars);
+    killGnuPrint("\n");
+  }
+  {
     int  pid = killGnuGetPid();
     char pidChars[21];
     killGnuToCharsSInt32d(pid, pidChars);
-    char pidCharsInHex[9];
-    pidCharsInHex[8] = 0;
-    killGnuToCharsWithoutNullTerminatorHex8(pid, pidCharsInHex);
     killGnuPrint("PID: ");
     killGnuPrint(pidChars);
-    killGnuPrint(", in hex: 0x");
-    killGnuPrint(pidCharsInHex);
     killGnuPrint("\n");
   }
   {
@@ -150,11 +153,11 @@ cc main.c -nostdinc -nostdlib -fno-stack-protector -fno-asynchronous-unwind-tabl
 
 ```
 $ valgrind ./a.out 
-==7478== Memcheck, a memory error detector
-==7478== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==7478== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==7478== Command: ./a.out
-==7478== 
+==12085== Memcheck, a memory error detector
+==12085== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==12085== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==12085== Command: ./a.out
+==12085== 
 Hello, World!
 Arg: ./a.out
 minSInt32CharsCount: 12, minSInt32 (%d): -2147483648
@@ -162,16 +165,17 @@ maxUInt32CharsCount: 11, maxUInt32 (%u): 4294967295
 minSInt64CharsCount: 21, minSInt64 (%lld): -9223372036854775808
 maxUInt64CharsCount: 21, maxUInt64 (%llu): 18446744073709551615
 sfloat32CharsCount: 12, sfloat32 (%.9g): 0.333333343
-PID: 7478, in hex: 0x00001D36
+TID: 12085
+PID: 12085
 2654435769 in hex: 0x9E3779B9
 14627333968358199309 in hex: 0xCAFEBABECAFED00D
-==7478== 
-==7478== HEAP SUMMARY:
-==7478==     in use at exit: 0 bytes in 0 blocks
-==7478==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==7478== 
-==7478== All heap blocks were freed -- no leaks are possible
-==7478== 
-==7478== For counts of detected and suppressed errors, rerun with: -v
-==7478== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==12085== 
+==12085== HEAP SUMMARY:
+==12085==     in use at exit: 0 bytes in 0 blocks
+==12085==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==12085== 
+==12085== All heap blocks were freed -- no leaks are possible
+==12085== 
+==12085== For counts of detected and suppressed errors, rerun with: -v
+==12085== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
