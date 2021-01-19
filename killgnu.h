@@ -52,7 +52,7 @@ int    killGnuToCharsUInt64llu                     (unsigned long value, char * 
 int    killGnuToCharsSFloat32Dot9g                 (float value, char * outChars);
 int    killGnuToCharsSFloat64Dot17g                (double value, char * outChars);
 void   killGnuToCharsWithoutNullTerminatorBinary8  (unsigned char value8Bit, char * outCharsWithoutNullTerminator);
-void   killGnuToCharsWithoutNullTerminatorHex2     (unsigned char value8Bit, char * outCharsWithoutNullTerminator)
+void   killGnuToCharsWithoutNullTerminatorHex2     (unsigned char value8Bit, char * outCharsWithoutNullTerminator);
 void   killGnuToCharsWithoutNullTerminatorBinary32 (unsigned value32Bit, char * outCharsWithoutNullTerminator);
 void   killGnuToCharsWithoutNullTerminatorHex8     (unsigned value32Bit, char * outCharsWithoutNullTerminator);
 void   killGnuToCharsWithoutNullTerminatorBinary64 (unsigned long value64Bit, char * outCharsWithoutNullTerminator);
