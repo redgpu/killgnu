@@ -109,6 +109,14 @@ int main(int ArgsCount, const char ** Args) {
     killGnuPrint(sfloat32Chars);
     killGnuPrint("\n");
   }
+  {
+    int  pid = killGnuGetPid();
+    char pidChars[21];
+    killGnuToCharsSInt32d(pid, pidChars);
+    killGnuPrint("PID: ");
+    killGnuPrint(pidChars);
+    killGnuPrint("\n");
+  }
   killGnuFree(memory);
 }
 ```
